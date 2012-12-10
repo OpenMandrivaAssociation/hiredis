@@ -55,3 +55,13 @@ rm -f `find %{buildroot} -name *.*a`
 %{_includedir}/%{name}
 %{_libdir}/*.so
 
+
+
+%changelog
+* Mon Jan 30 2012 Oden Eriksson <oeriksson@mandriva.com> 0.10.1-1
++ Revision: 769814
+- import hiredis
+
+
+* Mon Jan 30 2012 Oden Eriksson <oeriksson@mandriva.com> 0.10.1-1
+- fedora adopt
