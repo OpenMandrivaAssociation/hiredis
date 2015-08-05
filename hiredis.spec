@@ -1,15 +1,16 @@
 %define major 0
-%define libname %mklibname hiredis %{major}
+%define minor 13
+%define libname %mklibname hiredis %{major}.%{minor}
 %define develname %mklibname hiredis -d
 
 Summary:	A minimalistic C client library for Redis
 Name:		hiredis
-Version:	0.10.1
-Release:	2
+Version:	0.13.1
+Release:	1
 Group:		System/Libraries
 License:	BSD
-URL:		https://github.com/antirez/hiredis
-Source0:	antirez-%{name}-v%{version}-28-gd5d8843.tar.gz
+URL:		https://github.com/redis/hiredis/
+Source0:	https://github.com/redis/hiredis/archive/%{name}-%{version}.tar.gz
 
 %description 
 Hiredis is a minimalistic C client library for the Redis database.
@@ -34,14 +35,12 @@ using a Redis database.
 
 %prep
 
-%setup -q -n antirez-%{name}-d5d8843
+%setup -q
 
 %build
-%make OPTIMIZATION="%{optflags}" LDFLAGS="%{ldflags}"
+%make OPTIMIZATION="%{optflags}" LDFLAGS="%{ldflags}" CC=%{__cc}
 
 %install
-rm -rf %{buildroot}
-
 make install PREFIX=%{buildroot}/%{_prefix} INSTALL_LIBRARY_PATH=%{buildroot}%{_libdir}
 
 rm -f `find %{buildroot} -name *.*a`
@@ -53,15 +52,5 @@ rm -f `find %{buildroot} -name *.*a`
 %files -n %{develname}
 %doc README.md
 %{_includedir}/%{name}
+%{_libdir}/pkgconfig/%{name}.pc
 %{_libdir}/*.so
-
-
-
-%changelog
-* Mon Jan 30 2012 Oden Eriksson <oeriksson@mandriva.com> 0.10.1-1
-+ Revision: 769814
-- import hiredis
-
-
-* Mon Jan 30 2012 Oden Eriksson <oeriksson@mandriva.com> 0.10.1-1
-- fedora adopt
