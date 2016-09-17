@@ -5,12 +5,12 @@
 
 Summary:	A minimalistic C client library for Redis
 Name:		hiredis
-Version:	0.13.1
+Version:	0.13.3
 Release:	1
 Group:		System/Libraries
 License:	BSD
 URL:		https://github.com/redis/hiredis/
-Source0:	https://github.com/redis/hiredis/archive/%{name}-%{version}.tar.gz
+Source0:	https://github.com/redis/hiredis/archive/v%{version}.tar.gz
 
 %description 
 Hiredis is a minimalistic C client library for the Redis database.
@@ -32,9 +32,7 @@ Provides:	hiredis-devel = %{version}-%{release}
 This package contains the header files and libraries to develop applications
 using a Redis database.
 
-
 %prep
-
 %setup -q
 
 %build
