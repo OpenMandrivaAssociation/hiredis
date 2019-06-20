@@ -5,7 +5,7 @@
 
 Summary:	A minimalistic C client library for Redis
 Name:		hiredis
-Version:	0.13.3
+Version:	0.14.0
 Release:	2
 Group:		System/Libraries
 License:	BSD
