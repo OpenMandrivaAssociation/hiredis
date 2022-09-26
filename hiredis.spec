@@ -1,11 +1,10 @@
-%define major 0
-%define minor 13
-%define libname %mklibname hiredis %{major}.%{minor}
+%define major 1
+%define libname %mklibname hiredis
 %define develname %mklibname hiredis -d
 
 Summary:	A minimalistic C client library for Redis
 Name:		hiredis
-Version:	0.14.1
+Version:	1.0.2
 Release:	1
 Group:		System/Libraries
 License:	BSD
@@ -33,15 +32,14 @@ This package contains the header files and libraries to develop applications
 using a Redis database.
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
-%make OPTIMIZATION="%{optflags}" LDFLAGS="%{ldflags}" CC=%{__cc}
+%make_build OPTIMIZATION="%{optflags}" LDFLAGS="%{ldflags}" CC=%{__cc}
 
 %install
 make install PREFIX=%{buildroot}/%{_prefix} INSTALL_LIBRARY_PATH=%{buildroot}%{_libdir}
-
-rm -f `find %{buildroot} -name *.*a`
+rm %{buildroot}%{_libdir}/*.a
 
 %files -n %{libname}
 %doc COPYING
